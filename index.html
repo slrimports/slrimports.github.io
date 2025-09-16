@@ -1,0 +1,114 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="SLR Imports - Import vehicles from Japan & USA"/><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"><title>SLR Imports | Motor Vehicles from Japan & USA</title>
+<style>
+.packages-page {
+  width: 100%;
+  height: 100vh;
+  display: none;
+}
+.packages-page.active {
+  display: block;
+}
+#courier-services-page {
+  width: 100%;
+  height: 100vh;
+  display: none;
+}
+#courier-services-page iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+/* Transform navigation links to uppercase */
+.nav-link {
+    text-transform: uppercase;
+}
+</style>
+<script>
+// Run this before page renders
+(function() {
+  const observer = new MutationObserver(function(mutations) {
+    const links = document.querySelectorAll('a');
+    links.forEach(function(link) {
+      if (link.textContent.trim() === 'Go To PACKAGES') {
+        link.textContent = 'My Packages';
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.location.href = '/mypackages.html';
+          window.scrollTo(0, 0);
+        });
+      }
+      // Add scroll to top for all navigation links
+      if (link.classList.contains('nav-link') || link.closest('footer')) {
+        link.addEventListener('click', function() {
+          setTimeout(() => {
+            window.scrollTo(0, 0);
+          }, 100);
+        });
+      }
+    });
+    // Keep observing as React might re-render components
+  });
+  
+  // Start observing the document with the configured parameters
+  observer.observe(document.documentElement, { 
+    childList: true,
+    subtree: true
+  });
+
+  // Handle courier services route
+  if (window.location.pathname === '/courierservices') {
+    document.getElementById('root').style.display = 'none';
+    document.getElementById('courier-services-page').style.display = 'block';
+  }
+})();
+</script>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    // Function to remove vehicle link
+    function removeVehicleLink() {
+        // Look for button with onClick handler containing window.location
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => {
+            // Check if button has an onClick that redirects to slrimportsltd.com
+            const events = button?.$?.onclick?.toString() || button?.onclick?.toString() || '';
+            if ((events.includes('slrimportsltd.com') || events.includes('window.location')) && 
+                button.textContent.toLowerCase().includes('vehicle')) {
+                const container = button.parentElement;
+                if (container) container.remove();
+            }
+        });
+    }
+
+    // Run multiple times to catch React rendering
+    setTimeout(removeVehicleLink, 100);
+    setTimeout(removeVehicleLink, 500);
+    setTimeout(removeVehicleLink, 1000);
+
+    // Also observe for changes
+    const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+            if (mutation.addedNodes.length) {
+                removeVehicleLink();
+            }
+        }
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+});
+</script>
+<script defer="defer" src="/static/js/main.905d9aa4.js"></script>
+<link href="/static/css/main.8aec6554.css" rel="stylesheet">
+</head><body><noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+<div id="courier-page" class="packages-page">
+  <iframe src="https://slrimportsltd-packages.github.io/" class="courier-frame" title="SLR Imports Packages"></iframe>
+</div>
+<div id="courier-services-page">
+  <iframe src="/courierservices/index.html" title="SLR Imports Courier Services"></iframe>
+</div>
+
+</script></body></html>

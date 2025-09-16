@@ -65,27 +65,39 @@
 </script>
 <script>
 window.addEventListener('DOMContentLoaded', function() {
-    function hideVehicleGalleryLink() {
-        document.querySelectorAll('button, a').forEach(element => {
-            const text = element.textContent.trim();
-            const href = element.getAttribute('onclick')?.toString() || '';
-            
-            // Target either the text "VEHICLE GALLERY" or links/onclick handlers containing "vehicle-imports"
-            if (text === 'VEHICLE GALLERY' || href.includes('vehicle-imports') || 
-                href.includes('slrimportsltd.com')) {
-                // Try to find and hide the parent nav item
-                const navItem = element.closest('li') || 
-                              element.parentElement || 
-                              element;
-                navItem.style.display = 'none';
+    // Function to remove vehicle link
+    function removeVehicleLink() {
+        // Look for button with onClick handler containing window.location
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => {
+            // Check if button has an onClick that redirects to slrimportsltd.com
+            const events = button?.$?.onclick?.toString() || button?.onclick?.toString() || '';
+            if ((events.includes('slrimportsltd.com') || events.includes('window.location')) && 
+                button.textContent.toLowerCase().includes('vehicle')) {
+                const container = button.parentElement;
+                if (container) container.remove();
             }
         });
     }
 
-    // Initial hide and observe for changes
-    hideVehicleGalleryLink();
-    const observer = new MutationObserver(hideVehicleGalleryLink);
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Run multiple times to catch React rendering
+    setTimeout(removeVehicleLink, 100);
+    setTimeout(removeVehicleLink, 500);
+    setTimeout(removeVehicleLink, 1000);
+
+    // Also observe for changes
+    const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+            if (mutation.addedNodes.length) {
+                removeVehicleLink();
+            }
+        }
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 });
 </script>
 <script defer="defer" src="/static/js/main.905d9aa4.js"></script>

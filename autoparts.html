@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Auto Parts | SLR Imports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .auto-parts-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('/static/media/auto-parts-bg.jpg') center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cta-section {
+            background: #004d40;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ffd700;
+            color: #000;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auto-parts-hero">
+        <div>
+            <h1>Auto Parts Solutions</h1>
+            <p>Quality New & Used Parts from Global Sources</p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Our Auto Parts Service</h2>
+        <p>At SLR Imports, we provide comprehensive auto parts sourcing solutions, connecting you with quality parts from Japan, the US, and the UK. Whether you need new or used parts, our extensive network ensures you get the right parts at competitive prices.</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Global Sourcing</h3>
+                <p>Access to parts from leading manufacturers and suppliers in Japan, US, and UK markets.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Quality Assurance</h3>
+                <p>All parts are thoroughly inspected and verified for authenticity and condition.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Competitive Pricing</h3>
+                <p>Direct relationships with suppliers allow us to offer the best prices possible.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>Parts & Services</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>New Parts</h3>
+                <ul>
+                    <li>OEM Components</li>
+                    <li>Aftermarket Parts</li>
+                    <li>Performance Upgrades</li>
+                    <li>Genuine Accessories</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>Used Parts</h3>
+                <ul>
+                    <li>Tested & Verified</li>
+                    <li>Engine Components</li>
+                    <li>Body Parts</li>
+                    <li>Interior Components</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>Delivery Options</h3>
+                <ul>
+                    <li>Island-wide Delivery</li>
+                    <li>Pickup Available</li>
+                    <li>Express Shipping</li>
+                    <li>Secure Packaging</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2>Need Auto Parts?</h2>
+        <p>Contact us today for quotes and availability</p>
+        <a href="contact.html" class="cta-button">Get in Touch</a>
+    </div>
+</body>
+</html>

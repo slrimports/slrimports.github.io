@@ -65,6 +65,18 @@
 </script>
 <script>
 window.addEventListener('DOMContentLoaded', function() {
+    // Add Auto Parts link to navigation
+    const nav = document.querySelector('nav');
+    if (nav) {
+        const autoPartsButton = document.createElement('button');
+        autoPartsButton.textContent = 'AUTO PARTS';
+        autoPartsButton.className = 'text-yellow-400 hover:text-yellow-300 font-medium';
+        autoPartsButton.onclick = () => {
+            window.location.href = '/autoparts.html';
+        };
+        nav.insertBefore(autoPartsButton, nav.lastElementChild);
+    }
+
     // Function to remove vehicle link
     function removeVehicleLink() {
         // Look for button with onClick handler containing window.location

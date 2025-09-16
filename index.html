@@ -62,25 +62,30 @@
     document.getElementById('courier-services-page').style.display = 'block';
   }
 })();
-
+</script>
+<script>
 window.addEventListener('DOMContentLoaded', function() {
-    const observer = new MutationObserver(function(mutations) {
+    function hideVehicleGalleryLink() {
         document.querySelectorAll('button, a').forEach(element => {
-            const text = element.textContent.toLowerCase();
-            const href = element.getAttribute('href')?.toLowerCase() || '';
-            if (text.includes('vehicle imports') || 
-                text.includes('vehicle-imports') ||
-                href.includes('vehicle-imports') ||
+            const text = element.textContent.trim();
+            const href = element.getAttribute('onclick')?.toString() || '';
+            
+            // Target either the text "VEHICLE GALLERY" or links/onclick handlers containing "vehicle-imports"
+            if (text === 'VEHICLE GALLERY' || href.includes('vehicle-imports') || 
                 href.includes('slrimportsltd.com')) {
-                element.parentElement?.style.display = 'none';
+                // Try to find and hide the parent nav item
+                const navItem = element.closest('li') || 
+                              element.parentElement || 
+                              element;
+                navItem.style.display = 'none';
             }
         });
-    });
+    }
 
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
+    // Initial hide and observe for changes
+    hideVehicleGalleryLink();
+    const observer = new MutationObserver(hideVehicleGalleryLink);
+    observer.observe(document.body, { childList: true, subtree: true });
 });
 </script>
 <script defer="defer" src="/static/js/main.905d9aa4.js"></script>

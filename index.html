@@ -65,18 +65,6 @@
 </script>
 <script>
 window.addEventListener('DOMContentLoaded', function() {
-    // Add Auto Parts link to navigation
-    const nav = document.querySelector('nav');
-    if (nav) {
-        const autoPartsButton = document.createElement('button');
-        autoPartsButton.textContent = 'AUTO PARTS';
-        autoPartsButton.className = 'text-yellow-400 hover:text-yellow-300 font-medium';
-        autoPartsButton.onclick = () => {
-            window.location.href = '/autoparts.html';
-        };
-        nav.insertBefore(autoPartsButton, nav.lastElementChild);
-    }
-
     // Function to remove vehicle link
     function removeVehicleLink() {
         // Look for button with onClick handler containing window.location
@@ -92,16 +80,36 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Function to add auto parts link
+    function addAutoPartsLink() {
+        const nav = document.querySelector('nav');
+        if (nav) {
+            const vehicleImportsBtn = Array.from(nav.children).find(child => 
+                child.textContent.includes('VEHICLE IMPORTS'));
+            if (vehicleImportsBtn) {
+                const autoPartsBtn = document.createElement('button');
+                autoPartsBtn.textContent = 'AUTO PARTS';
+                autoPartsBtn.className = 'text-yellow-400 hover:text-yellow-300 font-medium';
+                autoPartsBtn.onclick = () => window.location.href = '/autoparts';
+                nav.insertBefore(autoPartsBtn, vehicleImportsBtn);
+            }
+        }
+    }
+
     // Run multiple times to catch React rendering
     setTimeout(removeVehicleLink, 100);
     setTimeout(removeVehicleLink, 500);
     setTimeout(removeVehicleLink, 1000);
+    setTimeout(addAutoPartsLink, 100);
+    setTimeout(addAutoPartsLink, 500);
+    setTimeout(addAutoPartsLink, 1000);
 
     // Also observe for changes
     const observer = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
             if (mutation.addedNodes.length) {
                 removeVehicleLink();
+                addAutoPartsLink();
             }
         }
     });

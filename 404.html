@@ -2,19 +2,35 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Loading My Packages...</title>
+  <title>My Packages - SLR Imports</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    .iframe-container {
+      width: 100%;
+      height: 100vh;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
   <script>
-    if (window.location.pathname === '/mypackages') {
-      window.location.href = 'https://slrimportsltd-packages.github.io/';
-    } else {
-      window.location.href = '/';
+    window.onload = function() {
+      if (window.location.pathname === '/mypackages') {
+        document.body.innerHTML = '<div class="iframe-container"><iframe src="https://slrimportsltd-packages.github.io/" allow="fullscreen" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe></div>';
+      } else {
+        window.location.href = '/';
+      }
     }
   </script>
 </head>
 <body>
   <div id="root"></div>
 </body>
-</html>
-</body>
-</html>
 </html>
